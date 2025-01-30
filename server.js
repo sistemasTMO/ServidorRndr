@@ -26,6 +26,10 @@ const dbConfig = {
   port: process.env.DB_PORT || 3306,
 };
 
+app.get('/', (req, res) => {
+  res.send('API funcionando');
+});
+
 let db;
 let pool = mysql.createPool(dbConfig);
 
