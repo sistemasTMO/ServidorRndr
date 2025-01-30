@@ -6,16 +6,26 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = 3306;
+const PORT = process.env.PORT || 3001;  // Usar el puerto de Render
 
-// Conexión a MySQL
-const dbConfig = {
-  host: 'p3plzcpnl506561.prod.phx3.secureserver.net', // Dominio del servidor
-  user: 'sistemastmo', // Usuario de la base de datos
-  password: 'sisTMO2025*', // Contraseña del usuario
-  database: 'produccionplaneacion', // Nombre de la base de datos
-  port: 3306 // Puerto de MySQL (generalmente 3306)
+const corsOptions = {
+  origin: ['http://localhost:3000', 'https://planeacionproduccion.com.mx'],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
 };
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
+const dbConfig = {
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT || 3306,
+};
+
 let db;
 let pool = mysql.createPool(dbConfig);
 
