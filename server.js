@@ -9,11 +9,12 @@ app.use(express.json());
 const PORT = process.env.PORT || 3001;  // Usar el puerto de Render
 // Configuración de CORS
 const corsOptions = {
-  origin: ['http://localhost:3000', 'https://planeacionproduccion.com.mx'],  // Permitir acceso solo desde estos dominios
-  methods: ['GET', 'POST', 'OPTIONS'],
+  origin: [process.env.CLIENT_URL || 'http://localhost:3000', 'https://planeacionproduccion.com.mx'],
+  methods: ['GET', 'POST', 'OPTIONS','PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
+app.use(cors(corsOptions));
 
 app.use(cors(corsOptions));  // Usar CORS
 app.options('*', cors(corsOptions));  // Permitir pre-flight requests
