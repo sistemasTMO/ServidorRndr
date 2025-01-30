@@ -4,7 +4,7 @@ const mysql = require('mysql2/promise');  // Esto es necesario para usar promesa
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); 
 
 const PORT = process.env.PORT || 3001;  // Usar el puerto de Render
 
