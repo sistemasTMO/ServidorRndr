@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",  // Este es el comando para arrancar la app
-    "dev": "nodemon server.js", // Este script es útil para desarrollo local
-    "prod": "pm2 start server.js" // Para producción (si usas PM2)
-  }, 
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "prod": "pm2 start server.js"
+  },
   "engines": {
-    "node": ">=18.18.0 <19.0.0",
+    "node": "18.x",
     "npm": "6.x"
   },
   "dependencies": {
