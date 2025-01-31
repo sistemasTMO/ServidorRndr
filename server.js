@@ -71,6 +71,9 @@ async function connectDB() {
   }
 }
 
+app.get('/', (req, res) => {
+  res.send('API funcionando');
+});
 
 // Conectar a la base de datos cuando inicie el servidor
 connectToDatabase().then(() => {
