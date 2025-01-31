@@ -4,8 +4,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "install": "npm install"
-  },
+    "build": "npm install"
+    }
+
   "engines": {
     "node": "18.x",
     "npm": "6.x"
