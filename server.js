@@ -37,10 +37,7 @@ async function conectarDB() {
 }
 
 // Iniciar el servidor en el puerto de Render o fallback en 10000
-const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
-});
+const PORT = process.env.PORT || 10000;  // Usa el puerto asignado por Render
 
 // Conectar a la base de datos
 conectarDB();
@@ -699,7 +696,6 @@ app.post('/agregar-nueva-ruta', (req, res) => {
   });
 });
 
-//Puerto a escuchar
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {   // Escucha en todas las interfaces
+  console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
 });
