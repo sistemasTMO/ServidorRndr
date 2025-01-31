@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json()); 
  
-const PORT = process.env.PORT || 3001;  // Usar el puerto de Render
+const PORT = process.env.PORT || 10000; // Usa el puerto de Render o 10000 como respaldo
 // Configuración de CORS
 const corsOptions = {
   origin: [process.env.CLIENT_URL || 'http://localhost:3000', 'https://planeacionproduccion.com.mx'],
