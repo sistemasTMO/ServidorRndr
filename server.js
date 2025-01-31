@@ -1,32 +1,49 @@
 const express = require('express');
 const cors = require('cors');
-const mysql = require('mysql2/promise');  // Esto es necesario para usar promesas
+const mysql = require('mysql2/promise');  // Para usar Promises en MySQL
 
 const app = express(); 
-app.use(cors());
 app.use(express.json()); 
- 
-const PORT = process.env.PORT || 10000; // Usa el puerto de Render o 10000 como respaldo
+
 // Configuración de CORS
 const corsOptions = {
   origin: [process.env.CLIENT_URL || 'http://localhost:3000', 'https://planeacionproduccion.com.mx'],
-  methods: ['GET', 'POST', 'OPTIONS','PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 };
-app.use(cors(corsOptions));
-
-app.use(cors(corsOptions));  // Usar CORS
+app.use(cors(corsOptions));  
 app.options('*', cors(corsOptions));  // Permitir pre-flight requests
 
-// Configuración de la base de datos con variables de entorno
+// Configuración de la base de datos con validación de variables de entorno
 const dbConfig = {
-  host: process.env.DB_HOST,  // Base de datos host
-  user: process.env.DB_USER,  // Usuario de base de datos
-  password: process.env.DB_PASSWORD,  // Contraseña de base de datos
-  database: process.env.DB_NAME,  // Nombre de la base de datos
-  port: process.env.DB_PORT || 3306,  // Puerto de la base de datos (por defecto es 3306)
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME || 'mi_base_de_datos',
+  port: process.env.DB_PORT || 3306,
 };
+
+// Función para conectar a la base de datos con manejo de errores
+async function conectarDB() {
+  try {
+    const connection = await mysql.createConnection(dbConfig);
+    console.log('✅ Conexión exitosa a la base de datos');
+    return connection;
+  } catch (error) {
+    console.error('❌ Error al conectar a la base de datos:', error.message);
+    process.exit(1);  // Detener el servidor si no se puede conectar
+  }
+}
+
+// Iniciar el servidor en el puerto de Render o fallback en 10000
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+});
+
+// Conectar a la base de datos
+conectarDB();
 
 // Crear una conexión a la base de datos
 async function connectToDatabase() {
