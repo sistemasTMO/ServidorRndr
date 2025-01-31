@@ -4,6 +4,7 @@ const mysql = require('mysql2/promise');  // Para usar Promises en MySQL
 
 const app = express(); 
 app.use(express.json()); 
+const PORT = process.env.PORT || 5000;
 
 // Configuración de CORS
 const corsOptions = {
