@@ -37,8 +37,15 @@ async function conectarDB() {
 }
 
 // Iniciar el servidor en el puerto de Render o fallback en 10000
-const PORT = process.env.PORT || 5000; 
-
+connectDB().then(() => {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Servidor corriendo en puerto ${PORT}`);
+  });
+}).catch(error => {
+  console.error('No se pudo iniciar el servidor debido a la conexión a la base de datos');
+  process.exit(1); // Salir con código 1 si no se pudo conectar
+});
 // Conectar a la base de datos
 conectarDB();
 
