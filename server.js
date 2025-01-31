@@ -37,7 +37,7 @@ async function conectarDB() {
 }
 
 // Iniciar el servidor en el puerto de Render o fallback en 10000
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 5000; 
 
 // Conectar a la base de datos
 conectarDB();
