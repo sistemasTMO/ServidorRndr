@@ -6,7 +6,7 @@
     "start": "node server.js",  // Este es el comando para arrancar la app
     "dev": "nodemon server.js", // Este script es útil para desarrollo local
     "prod": "pm2 start server.js" // Para producción (si usas PM2)
-  },
+  }, 
   "engines": {
     "node": ">=18.18.0 <19.0.0",
     "npm": "6.x"
