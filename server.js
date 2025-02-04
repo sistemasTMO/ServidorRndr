@@ -4,7 +4,7 @@ const mysql = require('mysql2/promise');  // Para usar Promises en MySQL
 
 const app = express(); 
 app.use(express.json()); 
-const PORT = process.env.PORT || 5000; // No forzar un puerto fijo
+const PORT = process.env.PORT || 3000; // No forzar un puerto fijo
 
 app.listen(PORT, () => {
     console.log(`🚀 Servidor corriendo en el puerto ${PORT}`);
